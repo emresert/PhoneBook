@@ -1,0 +1,29 @@
+﻿@model TelefonRehberi.Models.EntityFramework.Kullanıcı
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layaout.cshtml";
+}
+
+ <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="~/Files/r1.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+           
+      @using (Html.BeginForm("Login", "AdminUI", FormMethod.Post, new { @class = "form-signin" }))
+      {
+      <!--<input type="text" id="Kadi" class="form-control" placeholder="Kullanıcı Adı" required autofocus>-->
+      @Html.TextBoxFor(m => m.kAdi, new { @class = "form-control", placeholder = "Kullanıcı Adı", required = "required" })
+      @Html.PasswordFor(m => m.kSifre, new { @class = "form-control", placeholder = "Parola", required = "required" })
+      <button class="btn btn-lg btn-block btn-signin" type="submit" id="Giris">Giriş</button>
+      }
+     @if (@ViewBag.Mesaj != null)
+     {
+         <div class="@ViewBag.MesajCss" style="font-size:12px;padding:3px!important;">
+             <center>@ViewBag.Mesaj</center>
+         </div>
+     }
+      
+</div>
+
+
+   
+

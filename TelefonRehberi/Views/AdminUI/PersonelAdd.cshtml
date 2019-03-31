@@ -1,0 +1,68 @@
+﻿@model TelefonRehberi.Models.Class.PersonelModel
+
+@{
+    ViewBag.Title = "PersonelAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@Html.ValidationSummary()
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Personel Formu</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="personelAd">Personel Ad</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pAd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="personelSoyAd">Personel Soyad</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pSoyad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pSoyad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="personelSoyad">Personel Tel No</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pTelNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pTelNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="personelYonetici">Yönetici</label>
+            <div class="col-md-10">
+                @Html.DropDownList("yonetici", null,"Yönetici seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.yonetici, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="personelDepartman">Departman</label>
+            <div class="col-md-10">
+                @Html.DropDownList("dprFk", null,"Departman Seçiniz", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.dprFk, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ekle" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>

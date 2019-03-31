@@ -1,0 +1,45 @@
+﻿@using TelefonRehberi.Models.EntityFramework
+@model List<Personel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layaout.cshtml";
+}
+<div class="row mt-5" style="border-bottom:1px solid lightgray; width:75%;letter-spacing:1px">
+    <h2>Personel İletişim Bilgileri</h2>
+</div>
+
+
+
+<div class="row mt-5">
+    <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+            <div class="pull-right">
+                <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-sort-alpha-up mr-1" style="color:darkred;"></i>Filtre uygula</button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr class="filters">
+                    <th><input type="text" class="form-control" placeholder="Ad " disabled  style="font-weight:bold;" ></th>
+                    <th><input type="text" class="form-control" placeholder="Soyad" disabled  style="font-weight:bold;" ></th>
+                    <th><input type="text" class="form-control" placeholder="Tel No" disabled  style="font-weight:bold;" ></th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                  @foreach (var personel in Model)
+                  {
+                    <tr>
+                        <td>@personel.pAd</td> 
+                        <td>@personel.pSoyad</td>
+                        <td>@personel.pTelNo</td>
+                        <td>
+                            <a href="@Url.Action("Detail", "PublicUI",new {id= personel.pid })" style="display:block;color:#1cca14;">
+                        <i class="fas fa-info-circle mr-5 "></i></a>
+                        </td>
+                    </tr>
+                  }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+﻿
+@model TelefonRehberi.Models.Class.viewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@Html.ActionLink("Departman Ekle", "DepartmanAdd", null, new { @class = "btn btn-success" })
+<table class="table table-striped mt-2" id="tblDepartman" style="width:40%;">
+    <thead style="background-color:dodgerblue;color:ghostwhite;">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Departman Adı</th>
+            <th scope="col">Düzenle</th>
+            <th scope="col">Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{int index = 1;}
+        @foreach (var departman in Model.DepartmanInfo)
+        {
+
+            <tr>
+                <th scope="row" style="text-align:center;">@index</th>
+                <td>@departman.dprAd </td>            
+                <td>
+                    <a href="@Url.Action("DepartmanEdit", "AdminUI",new {id= departman.dprid})" style="text-decoration:none;color:orange !important">
+                        <i class="fas fa-edit ml-4" style="cursor:pointer;"></i>
+                    </a>
+                </td>
+                <td>
+                    <a class="departmanDelete" data-id="@departman.dprid" style="text-decoration:none;color:red !important">                      
+                            <i class="fas fa-minus-circle" style="cursor:pointer;"></i>
+                    </a>
+                </td>            
+            </tr>
+
+            index++;
+        }
+    </tbody>
+</table>
+<br />
+<br />
+@Html.ActionLink("Personel Ekle", "PersonelAdd", null, new { @class = "btn btn-success" })
+
+<table class="table table-striped mt-2" id="tblPersonel">
+    <thead style="background-color:dodgerblue;color:ghostwhite;">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Departman</th>
+            <th scope="col">Yönetici</th>
+            <th scope="col">Düzenle</th>
+            <th scope="col">Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{int i = 1;}
+        @foreach (var personel in Model.PersonelInfo)
+        {
+
+            <tr>
+                <th scope="row" style="text-align:center;">@i</th>
+                <td>@personel.pAd </td>
+                <td>@personel.pSoyad</td>
+                <td>@personel.pTelNo</td>
+                <td>
+                    @if (personel.dprFk != null)
+                    {
+                        @personel.Departman.dprAd
+                    }
+                    else
+                    {
+                        <h6>Atanmamış</h6>
+                    }
+
+                </td>
+                <td>
+                    @if (personel.yonetici == null)
+                {
+                        <h6>Atanmamış</h6>
+                    }
+                    @personel.yonetici
+                </td>
+                <td>
+                    <a href="@Url.Action("PersonelEdit", "AdminUI",new {id=personel.pid})" style="text-decoration:none;color:orange !important">
+                        <i class="fas fa-user-edit ml-4" style="cursor:pointer;"></i>
+                    </a>
+                </td>
+                <td>
+                    @{
+
+                    }
+                    <a class="personelDelete" data-id="@personel.pid" style="text-decoration:none;color:red !important">
+                        <i class="fas fa-user-times" style="cursor:pointer;"></i>
+                    </a>
+
+                </td>
+            </tr>
+
+                            i++;
+                        }
+    </tbody>
+</table>

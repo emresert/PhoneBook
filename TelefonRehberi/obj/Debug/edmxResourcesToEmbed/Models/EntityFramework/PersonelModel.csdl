@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RehberDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Departman">
+    <Key>
+      <PropertyRef Name="dprid" />
+    </Key>
+    <Property Name="dprid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dprAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personel" Relationship="Self.FK_Personel_Departman" FromRole="Departman" ToRole="Personel" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pTelNo" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="yonetici" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dprFk" Type="Int32" />
+    <NavigationProperty Name="Departman" Relationship="Self.FK_Personel_Departman" FromRole="Personel" ToRole="Departman" />
+  </EntityType>
+  <Association Name="FK_Personel_Departman">
+    <End Role="Departman" Type="Self.Departman" Multiplicity="0..1" />
+    <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departman">
+        <PropertyRef Name="dprid" />
+      </Principal>
+      <Dependent Role="Personel">
+        <PropertyRef Name="dprFk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RehberDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departman" EntityType="Self.Departman" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" />
+    <AssociationSet Name="FK_Personel_Departman" Association="Self.FK_Personel_Departman">
+      <End Role="Departman" EntitySet="Departman" />
+      <End Role="Personel" EntitySet="Personel" />
+    </AssociationSet>
+    <EntitySet Name="Kullanıcı" EntityType="RehberDBModel.Kullanıcı" />
+  </EntityContainer>
+  <EntityType Name="Kullanıcı">
+    <Key>
+      <PropertyRef Name="kId" />
+    </Key>
+    <Property Name="kId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="kSifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

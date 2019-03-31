@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RehberDBModelStoreContainer" CdmEntityContainer="RehberDBEntities">
+    <EntitySetMapping Name="Departman">
+      <EntityTypeMapping TypeName="RehberDBModel.Departman">
+        <MappingFragment StoreEntitySet="Departman">
+          <ScalarProperty Name="dprid" ColumnName="dprid" />
+          <ScalarProperty Name="dprAd" ColumnName="dprAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="RehberDBModel.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="pAd" ColumnName="pAd" />
+          <ScalarProperty Name="pSoyad" ColumnName="pSoyad" />
+          <ScalarProperty Name="pTelNo" ColumnName="pTelNo" />
+          <ScalarProperty Name="yonetici" ColumnName="yonetici" />
+          <ScalarProperty Name="dprFk" ColumnName="dprFk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanıcı">
+      <EntityTypeMapping TypeName="RehberDBModel.Kullanıcı">
+        <MappingFragment StoreEntitySet="Kullanıcı">
+          <ScalarProperty Name="kSifre" ColumnName="kSifre" />
+          <ScalarProperty Name="kAdi" ColumnName="kAdi" />
+          <ScalarProperty Name="kId" ColumnName="kId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

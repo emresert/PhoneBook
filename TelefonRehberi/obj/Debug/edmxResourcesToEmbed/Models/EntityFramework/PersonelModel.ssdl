@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RehberDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Departman">
+    <Key>
+      <PropertyRef Name="dprid" />
+    </Key>
+    <Property Name="dprid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dprAd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Kullanıcı">
+    <Key>
+      <PropertyRef Name="kId" />
+    </Key>
+    <Property Name="kId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kAdi" Type="nvarchar" MaxLength="20" />
+    <Property Name="kSifre" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="pSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="pTelNo" Type="nvarchar" MaxLength="11" />
+    <Property Name="yonetici" Type="nvarchar" MaxLength="50" />
+    <Property Name="dprFk" Type="int" />
+  </EntityType>
+  <Association Name="FK_Personel_Departman">
+    <End Role="Departman" Type="Self.Departman" Multiplicity="0..1" />
+    <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departman">
+        <PropertyRef Name="dprid" />
+      </Principal>
+      <Dependent Role="Personel">
+        <PropertyRef Name="dprFk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RehberDBModelStoreContainer">
+    <EntitySet Name="Departman" EntityType="Self.Departman" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Personel_Departman" Association="Self.FK_Personel_Departman">
+      <End Role="Departman" EntitySet="Departman" />
+      <End Role="Personel" EntitySet="Personel" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
